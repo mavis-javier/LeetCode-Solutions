@@ -1,27 +1,15 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-                int index = 0;
-        int firstIndex, secondIndex, subtrahend;
-        firstIndex = secondIndex = subtrahend = 0;
-
-        ArrayList<Integer> numsList = new ArrayList<>();
-        for (int value : nums) {
-            numsList.add(value);
-        }
-
-        while (index < nums.length) {
-            firstIndex = index;
-            subtrahend = target - nums[index];
-            if (!numsList.contains(subtrahend) || numsList.indexOf(subtrahend) == firstIndex) {
-                index++;
-                continue;
+        int opArray[] = new int[2];
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                int sum = nums[i] + nums[j];
+                if (sum == target) {
+                    opArray[0] = i;
+                    opArray[1] = j;
+                }
             }
-            secondIndex = numsList.indexOf(subtrahend);
-            break;
         }
-        int[] result = new int[2];
-        result[0] = firstIndex;
-        result[1] = secondIndex;
-        return result;
+        return opArray;
     }
 }
